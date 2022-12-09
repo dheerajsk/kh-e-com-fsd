@@ -9,8 +9,8 @@ function Register() {
 
   function handleFormSubmit(event) {
 
-    // console.log(JSON.stringify(user));
-    // redirect to login . 
+    console.log(JSON.stringify(user));
+
    fetch(
         "http://localhost:4100/api/auth/register",
         {
@@ -28,14 +28,13 @@ function Register() {
         }).catch(err=>{
           console.log(err);
         });
-  
   }
 
   return (
     <div className="register-form">
       <h3>Please Register.</h3>
       <hr />
-      <form>
+      <div>
         <div className="mb-3">
           <label htmlFor="" className="form-label">
             Email
@@ -174,7 +173,7 @@ function Register() {
         <button onClick={handleFormSubmit} type="submit" className="float-end btn btn-success">
           Register
         </button>
-      </form>
+      </div>
     </div>
   );
 }

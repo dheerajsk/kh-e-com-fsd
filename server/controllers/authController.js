@@ -15,10 +15,15 @@ module.exports.register = (req, res)=>{
 
 // Request => URL, Type[Gte, Post, Put Delete], Body is Payload.
 
-// module.exports.login = (req, res)=>{
-//     // Step 1. To read email and password sent by client.
-//     const body = req.body;
-//     // Step 2: Find user from users array with matching credentials.'
-//     users
+module.exports.login = (req, res)=>{
+    // Step 1. To read email and password sent by client.
+    const user = req.body;
+    // Step 2: Find user from users array with matching credentials.'
+    const userFound = users.find(u=> u.email==user.email && u.password==user.password);
+    if(userFound){
+        return res.status(200).send(userFound);
+    }else{
+        return res.status(400).send();
+    }
 
-// }
+}

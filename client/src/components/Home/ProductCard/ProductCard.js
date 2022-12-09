@@ -17,6 +17,8 @@ function ProductCard(values) {
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
     }
     values.notify();
+
+    
   }
 
   const key = values.item.id + "svg";
