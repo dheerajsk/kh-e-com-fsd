@@ -18,7 +18,31 @@ function ProductCard(values) {
     }
     values.notify();
 
-    
+
+    let user = localStorage.getItem("loggedInUser");
+    user = JSON.parse(user);
+    // call api.
+    fetch(
+      "http://localhost:4100/api/cart",
+      {
+        method:"POST",
+        body:JSON.stringify({"email":user.email, "product":values.item}),
+        headers:{
+          "Accept":"application/json",
+          "Content-Type":"application/json"
+        }
+      }
+    ).then(
+      res=>{
+        if(res.status===200){
+          console.log("Cart is updated"); 
+        }else if(res.status===400){
+          console.log("Invalid cart item");
+        }
+      }).catch(err=>{
+        console.log(err);
+      });
+
   }
 
   const key = values.item.id + "svg";

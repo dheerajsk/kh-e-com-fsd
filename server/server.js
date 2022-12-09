@@ -3,6 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const productRoutes = require("./routes/productRoutes");
 const authRoutes = require("./routes/authRoutes");
+const cartRoutes = require("./routes/cartRoutes");
 const cors = require("cors");
 
 const server = express();
@@ -33,6 +34,7 @@ server.use(bodyParser.json());
 
 server.use("/api/products", productRoutes);
 server.use("/api/auth", authRoutes);
+server.use("/api/cart", cartRoutes);
 
 server.get("/",(req, res)=>{
     res.send("Welcome to E-Com Server");
