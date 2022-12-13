@@ -31,13 +31,13 @@ server.use((req, res, next)=>{
 });
 
 server.use(cors());
-server.use(authMiddleware.auth);
+// server.use(authMiddleware.auth);
 
 server.use(bodyParser.json());
 
 server.use("/api/products", productRoutes);
 server.use("/api/auth", authRoutes);
-server.use("/api/cart", cartRoutes);
+server.use("/api/cart",authMiddleware.auth, cartRoutes);
 
 server.get("/",(req, res)=>{
     res.send("Welcome to E-Com Server");
