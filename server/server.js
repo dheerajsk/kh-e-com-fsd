@@ -1,5 +1,6 @@
 
 const express = require("express");
+const authMiddleware = require("./middlewares/auth");
 const bodyParser = require("body-parser");
 const productRoutes = require("./routes/productRoutes");
 const authRoutes = require("./routes/authRoutes");
@@ -30,6 +31,7 @@ server.use((req, res, next)=>{
 });
 
 server.use(cors());
+server.use(authMiddleware.auth);
 
 server.use(bodyParser.json());
 
