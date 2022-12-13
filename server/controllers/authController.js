@@ -1,4 +1,6 @@
 
+const jwt = require("jsonwebtoken");
+
 const users=[];
 
 module.exports.register = (req, res)=>{
@@ -21,7 +23,12 @@ module.exports.login = (req, res)=>{
     // Step 2: Find user from users array with matching credentials.'
     const userFound = users.find(u=> u.email==user.email && u.password==user.password);
     if(userFound){
-        return res.status(200).send(userFound);
+        let token = jwt.sign({
+            user: userFound
+        },"THISISSECRET",{
+            expiresIn: "2h"
+        });
+        return res.status(200).send(token);
     }else{
         return res.status(400).send();
     }

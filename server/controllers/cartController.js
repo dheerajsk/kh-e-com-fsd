@@ -11,3 +11,9 @@ module.exports.add = (req, res)=>{
     console.log(cartItems);
     return res.status(200).send("Item is added");
 }
+
+module.exports.get = (req, res)=>{
+    const email = req.body.email;
+    cartItems.filter(i=> i.email==email);
+
+}

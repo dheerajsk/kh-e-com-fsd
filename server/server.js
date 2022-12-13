@@ -30,6 +30,7 @@ server.use((req, res, next)=>{
 });
 
 server.use(cors());
+
 server.use(bodyParser.json());
 
 server.use("/api/products", productRoutes);
