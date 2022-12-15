@@ -23,13 +23,14 @@ function Login() {
     ).then(
       res=>{
         if(res.status===200){
-          res.json().then(parsedResponse=>{
+          res.text().then(parsedResponse=>{
             console.log(parsedResponse);
             localStorage.setItem("loggedInUser", JSON.stringify(parsedResponse));
             setError();
             navigate("/", {replace: true});
           })
-
+          console.log(res.toString());
+          navigate("/");
           
         }else if(res.status===400){
           setError(1);

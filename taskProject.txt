@@ -1,0 +1,15 @@
+
+NodeJS/Express app.
+
+Employee CRUD API.
+
+5 APIs.
+
+1. GET -> To get all the employees.
+2. POST -> To create a new employee.
+3. PUT -> To update an employee.
+4. DELETE -> To delete an employee.
+5. GET -> To get a single employee using id.
+
+=> Accesing params from url.
+localhost:4000/api/employee/1
