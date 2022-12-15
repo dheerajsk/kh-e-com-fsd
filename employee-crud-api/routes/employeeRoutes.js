@@ -5,5 +5,7 @@ const controller = require("../controllers/employeeController");
 const router = express.Router();
 
 router.post("/", controller.createEmployee);
+router.get("/", controller.getEmployee);
+router.get("/:id", controller.getEmployeeById);
 
 module.exports.router = router;
