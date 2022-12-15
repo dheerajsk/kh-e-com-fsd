@@ -27,10 +27,24 @@ module.exports.getEmployeeById = (req, res)=>{
     return res.status(200).send(employee);
 }
 
-function updateEmployee(){
-
+module.exports.updateEmployee = (req, res)=> {
+    const employee = req.body;
+    const index = employees.findIndex(e=> e.id==employee.id);
+    if(index<0){
+        return res.status(400).send("Invalid employee");
+    }else{
+        employees[index]=employee;
+    }
+    return res.status(200).send("Employee updated");
 }
 
-function deleteEmployee(){
-
+module.exports.deleteEmployee = (req, res)=>{
+    const id = req.params.id;
+    const index = employees.findIndex(e=> e.id==id);
+    if(index<0){
+        return res.status(404).send("Invalid employee");
+    }else{
+        employees.splice(index, 1);
+    }
+    return res.status(200).send("Employee deleted");
 }
