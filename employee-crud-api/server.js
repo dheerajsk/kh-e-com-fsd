@@ -2,8 +2,10 @@
 // 1. To create and configure server.
 const express = require("express");
 const bodyParser = require("body-parser");
+const mongodbConfig = require("./config/mongodb");
 
 const server = express();
+mongodbConfig.connect();
 const employeeRoute = require("./routes/employeeRoutes");
 
 server.listen(4200);

@@ -1,0 +1,48 @@
+
+MongoDB.
+    => Database.
+        A software which manages our data.
+
+SQl/Relational database.
+MqSQL.
+SqlServer.
+Oracle.
+DB2.
+
+NoSQl databases.
+Casandra - Apache.
+Redis - in memory cache.
+CosmosDB - Azure.
+OrientDB.
+
+
+SQL => Structured query language.
+
+Relational Databases. => Form of tables (rows/columns)
+
+Book => Author.
+Author
+
+NoSQL Databases.
+    => Scalable.
+    => Fleibility of structure.
+    => Collection/Documents {id:1, name:'', author:'', price:''}
+
+    Machine Learning.
+    Data Science.
+    Artificial Intelligence.
+    
+
+What is Database.
+Roles of Datbases.
+Types of Databases.
+Difference between SQL/NoSQL databases.
+
+Install MongoDB Server, and MongoDB UI Compass.
+
+1. Connecting to mongodb from NodeJS.
+
+2. Create a record.
+3. Get the records.
+4. Update.
+5. Delete.
