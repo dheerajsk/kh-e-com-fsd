@@ -40,7 +40,7 @@ Difference between SQL/NoSQL databases.
 
 Install MongoDB Server, and MongoDB UI Compass.
 
-1. Connecting to mongodb from NodeJS.
+1. Connecting to mongodb from NodeJS. - Done.
 
 2. Create a record.
 3. Get the records.

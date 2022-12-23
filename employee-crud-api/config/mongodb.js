@@ -10,11 +10,18 @@ const uri = "mongodb://localhost:27017/employeedb";
 
 // 4. Connect to mongodb.
 
+let clientInstance;
+
 module.exports.connect = ()=>{
     mongoClient.connect(uri)
     .then((client)=>{
+        clientInstance=client;
         console.log("MongoDB is connected");
     }).catch(err=>{
         console.log(err);
     });
+}
+
+module.exports.getCollection = (name)=>{
+    return clientInstance.db("employeedb").collection(name);
 }

@@ -1,4 +1,6 @@
 
+const repo = require("../repositories/employeeRepository");
+
 const employees=[];
 
 // localhost:4200/api/Employee - POST
@@ -6,11 +8,16 @@ module.exports.createEmployee = (req, res)=>{
     // read employee data from request object.
     console.log("Creating employee..");
     let employee = req.body;
-    if(!employee.id){
-        return res.status(400).send("ID is missing");
+    repo.add(employee, response);
+   
+}
+
+function response(err, msg){
+    if(!err){
+        return res.status(200).send(msg);
+    }else{
+        return res.status(400).send(err);
     }
-    employees.push(employee);
-    return res.status(200).send("Employee created");
 }
 
 module.exports.getEmployee = (req, res)=>{
