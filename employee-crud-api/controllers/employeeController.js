@@ -27,11 +27,13 @@ module.exports.getEmployee = (req, res)=>{
 module.exports.getEmployeeById = (req, res)=>{
     const id = req.params.id;
     console.log(id)
-    const employee = employees.find(e=> e.id==id);
-    if(!employee){
-        return res.status(404).send("No such employee");
-    }
-    return res.status(200).send(employee);
+    repo.getById(id, (docs)=>{
+        if(!docs || docs.length<1){
+            return res.status(404).send("No such employee");
+        }
+        return res.status(200).send(docs);
+    })
+    
 }
 
 module.exports.updateEmployee = (req, res)=> {

@@ -1,5 +1,6 @@
 
 const mongodb = require("../config/mongodb");
+const {ObjectId} = require("mongodb");
 
 module.exports.add = (employee, cb)=>{
     console.log("repo add");
@@ -29,4 +30,11 @@ module.exports.getAll = (cb)=>{
             .then((docs)=>{
                 cb(docs);
             })
+}
+
+module.exports.getById = (id, cb)=>{
+    const collection = mongodb.getCollection("employees");
+    collection.find({_id:ObjectId(id)})
+        .toArray()
+            .then((docs)=>{cb(docs)});
 }
