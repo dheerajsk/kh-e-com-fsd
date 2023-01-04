@@ -8,20 +8,20 @@ module.exports.createEmployee = (req, res)=>{
     // read employee data from request object.
     console.log("Creating employee..");
     let employee = req.body;
-    repo.add(employee, response);
+    repo.add(employee, (err, msg)=>{
+        if(!err){
+            return res.status(200).send(msg);
+        }else{
+            return res.status(400).send(err);
+        }
+    });
    
 }
 
-function response(err, msg){
-    if(!err){
-        return res.status(200).send(msg);
-    }else{
-        return res.status(400).send(err);
-    }
-}
-
 module.exports.getEmployee = (req, res)=>{
-    return res.status(200).send(employees);
+    repo.getAll((docs)=>{
+        return res.status(200).send(docs);
+    })
 }
 
 module.exports.getEmployeeById = (req, res)=>{
