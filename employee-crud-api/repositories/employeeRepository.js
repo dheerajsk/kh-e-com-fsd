@@ -53,3 +53,17 @@ module.exports.update = (employee, cb)=>{
         }
     ).catch(err=>{console.log(err)});
 }
+
+module.exports.delete = (id, cb)=>{
+    const collection = mongodb.getCollection("employees");
+    collection.deleteOne({_id:ObjectId(id)})
+        .then((res)=>{
+            console.log(res);
+            if(res.deletedCount==0){
+                cb("No such employee");
+            }else{
+                cb();
+            }
+        })
+        .catch(err=>{cb(err)})
+}

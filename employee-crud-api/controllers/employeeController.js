@@ -1,8 +1,6 @@
 
 const repo = require("../repositories/employeeRepository");
 
-const employees=[];
-
 // localhost:4200/api/Employee - POST
 module.exports.createEmployee = (req, res)=>{
     // read employee data from request object.
@@ -46,11 +44,10 @@ module.exports.updateEmployee = (req, res)=> {
 
 module.exports.deleteEmployee = (req, res)=>{
     const id = req.params.id;
-    const index = employees.findIndex(e=> e.id==id);
-    if(index<0){
-        return res.status(404).send("Invalid employee");
-    }else{
-        employees.splice(index, 1);
-    }
-    return res.status(200).send("Employee deleted");
+    repo.delete(id, (err)=>{
+        if(err){
+            return res.status(400).send("No such employee");
+        }
+        return res.status(200).send("Employee deleted");
+    });
 }
