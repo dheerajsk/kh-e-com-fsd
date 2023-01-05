@@ -38,13 +38,10 @@ module.exports.getEmployeeById = (req, res)=>{
 
 module.exports.updateEmployee = (req, res)=> {
     const employee = req.body;
-    const index = employees.findIndex(e=> e.id==employee.id);
-    if(index<0){
-        return res.status(400).send("Invalid employee");
-    }else{
-        employees[index]=employee;
-    }
-    return res.status(200).send("Employee updated");
+    repo.update(employee, ()=>{
+        return res.status(200).send("Employee updated");
+    });
+   
 }
 
 module.exports.deleteEmployee = (req, res)=>{

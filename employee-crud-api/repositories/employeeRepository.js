@@ -38,3 +38,18 @@ module.exports.getById = (id, cb)=>{
         .toArray()
             .then((docs)=>{cb(docs)});
 }
+
+module.exports.update = (employee, cb)=>{
+    const collection = mongodb.getCollection("employees");
+    collection.findOneAndUpdate(
+        // filter to find the document.
+        {_id:ObjectId(employee._id)},
+        {
+            $set:{name:employee.name, email:employee.email}
+        }
+    ).then(
+        (res)=>{
+            cb();
+        }
+    ).catch(err=>{console.log(err)});
+}
