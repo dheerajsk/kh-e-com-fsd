@@ -22,6 +22,13 @@ module.exports.getEmployee = (req, res)=>{
     })
 }
 
+
+module.exports.getBySalary = (req, res)=>{
+    repo.getEmployeesBySalary(50000,(docs)=>{
+        return res.status(200).send(docs);
+    })
+}
+
 module.exports.getEmployeeById = (req, res)=>{
     const id = req.params.id;
     console.log(id)

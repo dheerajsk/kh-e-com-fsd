@@ -10,7 +10,8 @@ module.exports.add = (employee, cb)=>{
     collection.insertOne(
         {
             name:employee.name,
-            email:employee.email
+            email:employee.email,
+            salary:employee.salary
         }
         ).then(
         (res)=>{
@@ -66,4 +67,14 @@ module.exports.delete = (id, cb)=>{
             }
         })
         .catch(err=>{cb(err)})
+}
+
+module.exports.getEmployeesBySalary = (salary, cb) =>{
+    const collection = mongodb.getCollection("employees");
+    // find is used to get all docs from mongodb.
+    collection.find({salary: {$gte: salary}})
+        .toArray()
+            .then((docs)=>{
+                cb(docs);
+            });
 }
