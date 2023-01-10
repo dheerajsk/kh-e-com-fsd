@@ -64,3 +64,10 @@ module.exports.getITEmployees = (req, res)=>{
         return res.status(200).send(docs);
     })
 }
+
+module.exports.lazyLoad = (req, res)=>{
+    const page = req.params.page;
+    repo.lazyLoad(page, (docs)=>{
+        return res.status(200).send(docs);
+    })
+}

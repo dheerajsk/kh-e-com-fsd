@@ -92,3 +92,12 @@ module.exports.getEmployeesWithLogicalOperartions = (cb)=>{
     }).toArray()
         .then((docs)=> cb(docs));
 }
+
+module.exports.lazyLoad = (page, cb)=>{
+    const collection = mongodb.getCollection("employees");
+    const skip = (page-1)*5; // 0, 5, 10, 
+    collection.find().skip(skip).limit(5).toArray()
+        .then((docs)=>{
+            cb(docs);
+        });
+}
