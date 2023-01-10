@@ -11,7 +11,8 @@ module.exports.add = (employee, cb)=>{
         {
             name:employee.name,
             email:employee.email,
-            salary:employee.salary
+            salary:employee.salary,
+            dept: employee.dept
         }
         ).then(
         (res)=>{
@@ -77,4 +78,17 @@ module.exports.getEmployeesBySalary = (salary, cb) =>{
             .then((docs)=>{
                 cb(docs);
             });
+}
+
+module.exports.getEmployeesWithLogicalOperartions = (cb)=>{
+    const collection = mongodb.getCollection("employees");
+    console.log("Getting IT Employees");
+    collection.find({
+        $and:
+        [
+            { salary: {$gte: 50000} },
+            {dept: {$eq : 'DevOPS'}}
+        ]
+    }).toArray()
+        .then((docs)=> cb(docs));
 }

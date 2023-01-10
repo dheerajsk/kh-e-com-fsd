@@ -58,3 +58,9 @@ module.exports.deleteEmployee = (req, res)=>{
         return res.status(200).send("Employee deleted");
     });
 }
+
+module.exports.getITEmployees = (req, res)=>{
+    repo.getEmployeesWithLogicalOperartions((docs)=>{
+        return res.status(200).send(docs);
+    })
+}
