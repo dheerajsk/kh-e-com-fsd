@@ -12,7 +12,8 @@ module.exports.add = (employee, cb)=>{
             name:employee.name,
             email:employee.email,
             salary:employee.salary,
-            dept: employee.dept
+            dept: employee.dept,
+            scores:employee.scores
         }
         ).then(
         (res)=>{
@@ -24,14 +25,45 @@ module.exports.add = (employee, cb)=>{
         cb(err, null)});
 }
 
+// module.exports.getAll = (cb)=>{
+//     const collection = mongodb.getCollection("employees");
+//     // find is used to get all docs from mongodb.
+//     collection.find()
+//         .toArray()
+//             .then((docs)=>{
+//                 cb(docs);
+//             })
+// }
+
 module.exports.getAll = (cb)=>{
     const collection = mongodb.getCollection("employees");
-    // find is used to get all docs from mongodb.
-    collection.find()
-        .toArray()
-            .then((docs)=>{
-                cb(docs);
-            })
+    collection.aggregate([
+        {
+            $match:{
+                "scores.score":{$lt:20}
+            }
+        },
+        {
+            // addFields adds new custom property to the resultset.
+            $addFields:{
+                // name of the field.
+                'scores':{
+                    $filter:{
+                        // input on which filter will be performed.
+                        input: '$scores', as : 'items', 
+                        // condition for filtering scores
+                        cond:{
+                            $lt: ["$$items.score", 20]
+                        }
+                    }
+                }
+            }
+        }
+    ]).toArray()
+        .then((docs)=>{
+            cb(docs)
+        });
+    
 }
 
 module.exports.getById = (id, cb)=>{
